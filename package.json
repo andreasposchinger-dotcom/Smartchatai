@@ -2,9 +2,13 @@
   "name": "agent_6c0eba99-1552-4151-8ab6-37f09ef64329",
   "version": "1.0.0",
   "description": "A Ai Chat with Wsl compatible.",
+  "homepage": "https://agent_512f4c52-9357-4963-b9c6-dee49ec39871.github.io/agent_6c0eba99-1552-4151-8ab6-37f09ef64329/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +17,21 @@
     "express": "^5.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
