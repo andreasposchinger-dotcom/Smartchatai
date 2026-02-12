@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to Smartchatai</h1>
-        <p>Your AI chat companion</p>
+        <h1>Smartchatai</h1>
+        <p>Dein KI-Chat für schnelle Antworten im Browser</p>
       </header>
       <ChatInterface />
     </div>
