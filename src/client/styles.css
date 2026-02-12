@@ -21,6 +21,28 @@ body {
   overflow: hidden;
 }
 
+.chat-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.secondary-button {
+  background: transparent;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+}
+
+.secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .messages {
   height: 400px;
   overflow-y: auto;
@@ -68,6 +90,25 @@ body {
   cursor: pointer;
 }
 
-.input-area button:hover {
+.input-area button:disabled {
+  background-color: #767b86;
+  cursor: not-allowed;
+}
+
+.input-area button:hover:not(:disabled) {
   background-color: #1a1d22;
+}
+
+.empty-state {
+  color: #666;
+  text-align: center;
+  padding: 24px 12px;
+  font-style: italic;
+}
+
+.error-message {
+  color: #9f1d1d;
+  margin: 0;
+  padding: 0 12px 8px;
+  font-size: 0.9rem;
 }
