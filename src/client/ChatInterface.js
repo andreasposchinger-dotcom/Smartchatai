@@ -50,8 +50,8 @@ function ChatInterface() {
   return (
     <div className="chat-interface">
       <div className="messages">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender}`}>
+        {messages.map((msg) => (
+          <div key={msg.id} className={`message ${msg.sender}`}>
             {msg.text}
           </div>
         ))}
@@ -61,6 +61,11 @@ function ChatInterface() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSend();
+            }
+          }}
           placeholder="Type your message..."
           disabled={isLoading}
         />
