@@ -5,21 +5,14 @@ function ChatInterface() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const createMessage = (text, sender) => ({
-    id:
-      typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-        ? crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
-    text,
-    sender,
-  });
-
   const handleSend = async () => {
     const trimmedInput = input.trim();
     if (trimmedInput === '' || isLoading) return;
 
-    const newUserMessage = createMessage(trimmedInput, 'user');
-    setMessages((prevMessages) => [...prevMessages, newUserMessage]);
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { text: trimmedInput, sender: 'user' },
+    ]);
     setInput('');
     setIsLoading(true);
 
@@ -33,19 +26,22 @@ function ChatInterface() {
       });
 
       if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+        throw new Error(`API request failed with status ${response.status}`);
       }
 
       const data = await response.json();
-      const botText = data.reply || data.message || data.text || 'No response received.';
-      const newBotMessage = createMessage(botText, 'bot');
-      setMessages((prevMessages) => [...prevMessages, newBotMessage]);
-    } catch {
-      const fallbackMessage = createMessage(
-        'Sorry, I could not process your request right now.',
-        'bot'
-      );
-      setMessages((prevMessages) => [...prevMessages, fallbackMessage]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: data.reply || 'Keine Antwort erhalten.', sender: 'bot' },
+      ]);
+    } catch (error) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          text: 'Es gab ein Problem beim Senden deiner Nachricht. Bitte versuche es erneut.',
+          sender: 'bot',
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
