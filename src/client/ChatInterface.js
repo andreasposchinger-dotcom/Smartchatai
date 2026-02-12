@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function ChatInterface() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const createMessage = (text, sender) => ({
     id:
@@ -13,16 +14,41 @@ function ChatInterface() {
     sender,
   });
 
-  const handleSend = () => {
-    if (input.trim() === '') return;
-    const newUserMessage = createMessage(input, 'user');
+  const handleSend = async () => {
+    const trimmedInput = input.trim();
+    if (trimmedInput === '' || isLoading) return;
+
+    const newUserMessage = createMessage(trimmedInput, 'user');
     setMessages((prevMessages) => [...prevMessages, newUserMessage]);
-
-    // Falls Bot-Nachrichten ergänzt werden, ebenfalls über createMessage erstellen.
-    // const newBotMessage = createMessage('...', 'bot');
-    // setMessages((prevMessages) => [...prevMessages, newBotMessage]);
-
     setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: trimmedInput }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      const botText = data.reply || data.message || data.text || 'No response received.';
+      const newBotMessage = createMessage(botText, 'bot');
+      setMessages((prevMessages) => [...prevMessages, newBotMessage]);
+    } catch {
+      const fallbackMessage = createMessage(
+        'Sorry, I could not process your request right now.',
+        'bot'
+      );
+      setMessages((prevMessages) => [...prevMessages, fallbackMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -39,9 +65,17 @@ function ChatInterface() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSend();
+            }
+          }}
           placeholder="Type your message..."
+          disabled={isLoading}
         />
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSend} disabled={isLoading}>
+          {isLoading ? 'Sending...' : 'Send'}
+        </button>
       </div>
     </div>
   );
