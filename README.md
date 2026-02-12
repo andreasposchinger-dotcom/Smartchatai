@@ -14,20 +14,7 @@ npm install
 npm start
 ```
 
-## Replit-Start (empfohlen)
-
-Dieses Repo ist für Replit vorkonfiguriert:
-
-- `.replit` startet automatisch `npm run start:replit`
-- `start:replit` baut das Frontend und startet den Express-Server auf `0.0.0.0:3000`
-- Replit mapped Port `3000` auf den öffentlichen Web-Port
-
-Falls nötig manuell in der Shell:
-
-```bash
-npm install
-npm run start:replit
-```
+Danach ist die App unter `http://localhost:3000/agent_6c0eba99-1552-4151-8ab6-37f09ef64329` erreichbar.
 
 ## Build
 
