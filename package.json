@@ -5,8 +5,10 @@
   "homepage": "https://agent_512f4c52-9357-4963-b9c6-dee49ec39871.github.io/agent_6c0eba99-1552-4151-8ab6-37f09ef64329/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
