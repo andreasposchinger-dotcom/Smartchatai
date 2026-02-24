@@ -1,20 +1,19 @@
-# Smartchatai
+# Smartchatai (Native Programm)
 
 Ein einfacher KI-Chat-Prototyp mit React-Frontend und **Rust-Backend (Axum)**.
 
-## Voraussetzungen
+## Ziel
 
 - Node.js 18+
 - npm 9+
 - Rust (stable) + Cargo
 
-## Lokale Entwicklung
+## Starten
 
 Frontend (React Dev Server):
 
 ```bash
-npm install
-npm start
+cargo run --bin smartchatai
 ```
 
 Backend (Rust API + statische Auslieferung des Builds):
@@ -33,7 +32,12 @@ npm run build
 cargo build --bin server
 ```
 
-## Features
+Die ausführbare Datei liegt dann unter:
+
+- Linux/macOS: `target/release/smartchatai`
+- Windows: `target\\release\\smartchatai.exe`
+
+## Bedienung
 
 - Chat-Oberfläche mit Ladeindikator
 - Persistente Chat-Historie im Browser (`localStorage`)
@@ -41,7 +45,10 @@ cargo build --bin server
 - Robuste Fehlerbehandlung inklusive Timeout bei API-Anfragen
 - Rust-basierte API mit Axum
 
-## API-Endpunkte
+- Nachricht schreiben + Enter
+- `/help` für Hilfe
+- `/history` für Verlauf
+- `/clear` zum Löschen
+- `/exit` zum Beenden
 
-- `GET /api` – einfacher Status-Text
-- `POST /api/chat` – erwartet `{ "message": "..." }` und liefert `{ "reply": "..." }`
+Der Verlauf wird lokal in `.smartchatai_history.txt` gespeichert.

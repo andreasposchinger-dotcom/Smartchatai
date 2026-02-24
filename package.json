@@ -1,9 +1,8 @@
 {
-  "name": "agent_6c0eba99-1552-4151-8ab6-37f09ef64329",
-  "version": "1.0.0",
-  "description": "A Ai Chat with Wsl compatible.",
-  "homepage": ".",
-  "main": "index.js",
+  "name": "smartchatai-legacy-web",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Legacy web shell; Smartchatai now runs as native Rust executable.",
   "scripts": {
     "start": "react-scripts start",
     "start:replit": "npm run build && cargo run --bin server",

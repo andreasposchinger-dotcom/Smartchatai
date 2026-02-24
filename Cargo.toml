@@ -1,4 +1,16 @@
 [package]
+name = "smartchatai"
+version = "0.2.0"
+edition = "2021"
+description = "Smartchatai as a native terminal executable"
+
+[[bin]]
+name = "smartchatai"
+path = "src/main.rs"
+
+[[bin]]
+name = "server"
+path = "src/bin/server.rs"
 name = "smartchatai-server"
 version = "0.1.0"
 edition = "2021"
