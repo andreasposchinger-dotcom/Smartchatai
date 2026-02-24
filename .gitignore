@@ -1,3 +1,5 @@
 .env
 node_modules/
 build/
+target/
+.smartchatai_history.txt

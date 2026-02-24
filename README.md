@@ -1,35 +1,36 @@
-# Smartchatai
+# Smartchatai (Native Programm)
 
-Ein einfacher KI-Chat-Prototyp mit React-Frontend und Express-API.
+Smartchatai wurde komplett von einer kleinen Website auf ein **natives Rust-Programm** umgestellt.
 
-## Voraussetzungen
+## Ziel
 
-- Node.js 18+
-- npm 9+
+Du bekommst jetzt ein ausführbares Programm (z. B. `.exe` unter Windows) statt einer Browser-App.
 
-## Lokale Entwicklung
-
-```bash
-npm install
-npm start
-```
-
-Danach ist die App unter `http://localhost:3000/agent_6c0eba99-1552-4151-8ab6-37f09ef64329` erreichbar.
-
-## Build
+## Starten
 
 ```bash
-npm run build
+cargo run --bin smartchatai
 ```
 
-## Features
+## Release-Build (für EXE/ausführbare Datei)
 
-- Chat-Oberfläche mit Ladeindikator
-- Persistente Chat-Historie im Browser (`localStorage`)
-- Chat löschen per Button
-- Robuste Fehlerbehandlung inklusive Timeout bei API-Anfragen
+```bash
+cargo build --release --bin smartchatai
+```
 
-## API-Endpunkte
+Die ausführbare Datei liegt dann unter:
 
-- `GET /api` – einfacher Status-Text
-- `POST /api/chat` – erwartet `{ "message": "..." }` und liefert `{ "reply": "..." }`
+- Linux/macOS: `target/release/smartchatai`
+- Windows: `target\\release\\smartchatai.exe`
+
+## Bedienung
+
+Im Programm:
+
+- Nachricht schreiben + Enter
+- `/help` für Hilfe
+- `/history` für Verlauf
+- `/clear` zum Löschen
+- `/exit` zum Beenden
+
+Der Verlauf wird lokal in `.smartchatai_history.txt` gespeichert.

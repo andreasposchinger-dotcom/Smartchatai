@@ -1,41 +1,10 @@
 {
-  "name": "agent_6c0eba99-1552-4151-8ab6-37f09ef64329",
-  "version": "1.0.0",
-  "description": "A Ai Chat with Wsl compatible.",
-  "homepage": ".",
-  "main": "index.js",
+  "name": "smartchatai-legacy-web",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Legacy web shell; Smartchatai now runs as native Rust executable.",
   "scripts": {
-    "start": "react-scripts start",
-    "start:replit": "npm run build && node src/server/server.js",
-    "server": "node src/server/server.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^5.2.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0",
-    "react-scripts": "^5.0.1"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "smartchatai": "cargo run --bin smartchatai",
+    "build:exe": "cargo build --release --bin smartchatai"
   }
 }
